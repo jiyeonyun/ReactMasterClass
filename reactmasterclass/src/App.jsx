@@ -34,6 +34,7 @@ const Box = styled.div`
     font-size: 98px;
   }
 `;
+
 function App() {
   return (
     <Wrapper>
