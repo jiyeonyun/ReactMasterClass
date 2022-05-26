@@ -1,32 +1,43 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Father = styled.div`
+const Wrapper = styled.div`
   display: flex;
 `;
 
-const BoxOne = styled.div`
-  background-color: teal;
-  width: 100px;
-  height: 100px;
+const rotation = keyframes`
+  0%{
+    transform: rotate(0deg) ;
+    border-radius: 0;
+  }
+  50%{
+    transform: rotate(360deg) ;
+    border-radius: 50%;
+  }
+  100%{
+    transform: rotate(0deg) ;
+    border-radius: 0;
+  }
 `;
 
-const BoxTwo = styled.div`
+const Box = styled.div`
+  height: 200px;
+  width: 200px;
   background-color: tomato;
-  width: 100px;
-  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* animation: ${rotation} 1s linear infinite; */
+  span {
+    font-size: 36px;
+  }
 `;
-
-const Text = styled.h1`
-  color: white;
-`;
-
 function App() {
   return (
-    <Father>
-      <BoxOne />
-      <Text>Hello</Text>
-      <BoxTwo />
-    </Father>
+    <Wrapper>
+      <Box>
+        <span>:)</span>
+      </Box>
+    </Wrapper>
   );
 }
 
