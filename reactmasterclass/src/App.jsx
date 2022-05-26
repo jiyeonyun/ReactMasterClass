@@ -18,7 +18,10 @@ const rotation = keyframes`
     border-radius: 0;
   }
 `;
-
+const Emogi = styled.span`
+  font-size: 36px;
+  color: black;
+`;
 const Box = styled.div`
   height: 200px;
   width: 200px;
@@ -27,16 +30,17 @@ const Box = styled.div`
   align-items: center;
   justify-content: center;
   /* animation: ${rotation} 1s linear infinite; */
-  span {
-    font-size: 36px;
+  ${Emogi}:hover {
+    font-size: 98px;
   }
 `;
 function App() {
   return (
     <Wrapper>
       <Box>
-        <span>:)</span>
+        <Emogi as={"p"}>:)</Emogi>
       </Box>
+      <Emogi>hi</Emogi>
     </Wrapper>
   );
 }
