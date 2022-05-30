@@ -6,8 +6,8 @@ interface RouteParams {
 }
 
 const Coin = () => {
-  const { coinId } = useParams<RouteParams>();
-  return <div>coin:coinId</div>;
+  const { coinId } = useParams<keyof RouteParams>() as RouteParams;
+  return <div>coin:{coinId}</div>;
 };
 
 export default Coin;
