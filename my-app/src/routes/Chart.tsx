@@ -20,8 +20,12 @@ interface IHistorical {
 }
 const Chart = () => {
   const { coinId } = useOutletContext<ChartProps>();
-  const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
-    fetchCoinHistory(coinId)
+  const { isLoading, data } = useQuery<IHistorical[]>(
+    ["ohlcv", coinId],
+    () => fetchCoinHistory(coinId),
+    {
+      refetchInterval: 10000,
+    }
   );
   return (
     <div>
@@ -29,11 +33,12 @@ const Chart = () => {
         "Loading chart..."
       ) : (
         <ReactApexChart
-          type="line"
+          type="candlestick"
           series={[
             {
-              name: "Price",
-              data: data?.map((price) => price.close) as number[],
+              data: data?.map((price) => {
+                return;
+              }),
             },
           ]}
           options={{
@@ -41,30 +46,36 @@ const Chart = () => {
               mode: "dark",
             },
             chart: {
-              height: 300,
+              type: "candlestick",
+              height: 350,
               width: 500,
               toolbar: {
                 show: false,
               },
               background: "transparent",
             },
-            grid: { show: false },
             stroke: {
               curve: "smooth",
-              width: 3,
+              width: 2,
             },
             yaxis: {
               show: false,
             },
             xaxis: {
-              axisBorder: {
-                show: false,
-              },
-              axisTicks: {
-                show: false,
-              },
+              type: "datetime",
+              categories: data?.map((price) => price.time_close),
               labels: {
-                show: false,
+                style: {
+                  colors: "#9c88ff",
+                },
+              },
+            },
+            plotOptions: {
+              candlestick: {
+                colors: {
+                  upward: "#3C90EB",
+                  downward: "#DF7D46",
+                },
               },
             },
           }}

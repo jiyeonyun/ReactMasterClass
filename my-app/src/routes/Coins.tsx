@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "./api";
+import { Helmet } from "react-helmet-async";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -80,6 +81,9 @@ const Coins = () => {
   const { isLoading, data } = useQuery<Icoin[]>("allCoins", fetchCoins); //앞에는 쿼리 식별자 뒤에는 함수
   return (
     <Container>
+      <Helmet>
+        <title>coinTracekr</title>
+      </Helmet>
       <Header>
         <Title>coinTracekr</Title>
       </Header>
