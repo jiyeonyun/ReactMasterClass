@@ -34,13 +34,21 @@ const Chart = () => {
       ) : (
         <ReactApexChart
           type="candlestick"
-          series={[
-            {
-              data: data?.map((price) => {
-                return;
-              }),
-            },
-          ]}
+          series={
+            [
+              {
+                data: data?.map((price) => {
+                  return [
+                    Date.parse(price.time_close),
+                    price.open,
+                    price.high,
+                    price.low,
+                    price.close,
+                  ];
+                }),
+              },
+            ] as any
+          }
           options={{
             theme: {
               mode: "dark",
