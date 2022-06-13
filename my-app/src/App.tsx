@@ -78,10 +78,9 @@ function App() {
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <button onClick={toggleDark}>click</button>
         <GlobalStyle />
         <HelmetProvider>
-          <Router />
+          <Router toggleDark={toggleDark} />
         </HelmetProvider>
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
