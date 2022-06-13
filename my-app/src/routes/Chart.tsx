@@ -1,6 +1,5 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
 import { fetchCoinHistory } from "./api";
 import { useOutletContext } from "react-router-dom";
 import ReactApexChart from "react-apexcharts";
@@ -40,10 +39,10 @@ const Chart = () => {
                 data: data?.map((price) => {
                   return [
                     Date.parse(price.time_close),
-                    price.open,
-                    price.high,
-                    price.low,
-                    price.close,
+                    price.open.toFixed(3),
+                    price.high.toFixed(3),
+                    price.low.toFixed(3),
+                    price.close.toFixed(3),
                   ];
                 }),
               },
